@@ -1,0 +1,24 @@
+{
+    "name": "psmoduleregister",
+    "version": "0.0.1",
+    "description": "Install/Register a PowerShell module in the user's module's path",
+    "preferGlobal": true,
+    "main": "index.js",
+    "bin": {"psmoduleregister": "index.js"},
+    "author": "Hugo Belin",
+    "keywords": [
+        "PowerShell",
+        "Module",
+        "Register"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/hobelinm/PSModuleRegister.git"
+    },
+    "dependencies": {
+        "commander": "*"
+    },
+    "engines": {
+        "node": "*"
+    }
+}
