@@ -48,7 +48,7 @@ if (-not $userPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Admini
     Write-Warning "Process must run with administrative privileges. Attempting to elevate."
     $powerShellArgs = Join-Path -Path $PSScriptRoot -ChildPath "RegisterModule.ps1" 
     $powerShellProcess = New-Object -TypeName System.Diagnostics.ProcessStartInfo -ArgumentList "PowerShell"
-    $powerShellProcess.Arguments = " -c '$powerShellArgs' -Path '$Path'"
+    $powerShellProcess.Arguments = " -c . '$powerShellArgs' -Path '$Path'"
     $powerShellProcess.Verb = "runas"
     [System.Diagnostics.Process]::Start($powerShellProcess)
     if (-not $?) {
