@@ -1,10 +1,10 @@
 {
     "name": "psmoduleregister",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Install/Register a PowerShell module in the user's module's path",
     "preferGlobal": true,
     "main": "index.js",
-    "bin": {"psmoduleregister": "index.js"},
+    "bin": {"psmoduleregister": "./index.js"},
     "author": "Hugo Belin",
     "keywords": [
         "PowerShell",
