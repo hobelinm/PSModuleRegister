@@ -11,7 +11,7 @@ program
 
 if ((!program.install && !program.register) || (program.install && program.register)) {
     program.outputHelp();
-    return
+    process.exit(0);
 }
 
 var errorFound = false;
@@ -19,18 +19,22 @@ if (program.install) {
     var execCmd = "npm install -g " + program.install;
     runCommand(execCmd);
     if (errorFound) {
-        return;
+        process.exit(1);
     }
     
     execCmd = "PowerShell -c . '" + __dirname + "\\RegisterModule.ps1' -Package " + program.install;
     runCommand(execCmd);
-    return;
+    process.exit(0);
 }
 
 if (program.register) {
-    var execCmd = "PowerShell -c . '" + __dirname + "\\RegisterModule.ps1' -Path " + program.register;
+    var execCmd = "PowerShell -c . '" + __dirname + "\\RegisterModule.ps1' -Path '" + program.register + "'";
     runCommand(execCmd);
-    return;
+    if (errorFound) {
+        process.exit(1);
+    }
+    
+    process.exit(0);
 }
 
 function runCommand (cmd) {
