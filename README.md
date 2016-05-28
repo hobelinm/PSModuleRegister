@@ -1,5 +1,6 @@
 # PSModuleRegister
-Version 0.0.5
+Version 1.0.0
+
 Register a module in user's PS Module path
 >Pass the module path to create a symbolic link in the PS Module path
 >Install package from npm globally and register it in the PS Module path
