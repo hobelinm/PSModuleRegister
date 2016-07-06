@@ -1,6 +1,6 @@
 {
     "name": "psmoduleregister",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Install/Register a PowerShell module in the user's module's path",
     "preferGlobal": true,
     "main": "index.js",
@@ -16,7 +16,8 @@
         "url": "https://github.com/hobelinm/PSModuleRegister.git"
     },
     "dependencies": {
-        "commander": "*"
+        "commander": "*",
+        "exec-npm": "*"
     },
     "engines": {
         "node": "*"
