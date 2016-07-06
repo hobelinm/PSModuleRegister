@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 var program = require('commander');
-var exec = require('child_process').exec;
+var exec = require('exec');
 
 function runCommand (cmd) {
     console.log("About to execute: " + cmd);
