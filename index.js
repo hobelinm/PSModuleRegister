@@ -2,15 +2,14 @@
 
 var fs = require('fs');
 var program = require('commander');
-var exec = require('exec');
+var exec = require('exec-npm');
 
 function runCommand (cmd) {
     console.log("About to execute: " + cmd);
-    exec(cmd, function(err, stdout, stderr) {
-        console.log(stdout);
+    exec(cmd, function(err) {
         if (err) {
             errorFound = true;
-            console.warn(stderr);
+            console.warn(err.message);
         }
     });
 }
