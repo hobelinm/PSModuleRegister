@@ -1,6 +1,6 @@
 {
     "name": "psmoduleregister",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Install/Register a PowerShell module in the user's module's path",
     "preferGlobal": true,
     "main": "index.js",
