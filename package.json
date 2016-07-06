@@ -20,5 +20,6 @@
     },
     "engines": {
         "node": "*"
-    }
+    },
+    "license": "See license in LICENSE"
 }

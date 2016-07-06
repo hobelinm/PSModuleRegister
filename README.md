@@ -24,4 +24,4 @@ Example:
 ```
 PS> psmoduleregister --install ps-modulepackage
 ```
-Installs ps-modulepackage globally and register it in the module path
+Installs ps-modulepackage globally and register it in the module path. Use any existing npm PowerShell module instead of ps-modulepackage
