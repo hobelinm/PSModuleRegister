@@ -1,6 +1,6 @@
 {
     "name": "psmoduleregister",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Install/Register a PowerShell module in the user's module's path",
     "preferGlobal": true,
     "main": "index.js",
@@ -21,5 +21,5 @@
     "engines": {
         "node": "*"
     },
-    "license": "See license in LICENSE"
+    "license": "SEE LICENSE IN LICENSE"
 }
