@@ -28,19 +28,19 @@ if ((!program.install && !program.register) || (program.install && program.regis
 
 var errorFound = false;
 if (program.install) {
-    var execCmd = "npm install -g " + program.install;
+    var execCmd = ["npm", "install", "-g", program.install];
     runCommand(execCmd);
     if (errorFound) {
         process.exit(1);
     }
     
-    execCmd = "PowerShell -c . '" + __dirname + "\\RegisterModule.ps1' -Package " + program.install;
+    execCmd = ["PowerShell", "-c . '" + __dirname + "\\RegisterModule.ps1' -Package " + program.install];
     runCommand(execCmd);
     process.exit(0);
 }
 
 if (program.register) {
-    var execCmd = "PowerShell -c . '" + __dirname + "\\RegisterModule.ps1' -Path '" + program.register + "'";
+    var execCmd = ["PowerShell", "-c . '" + __dirname + "\\RegisterModule.ps1' -Path '" + program.register + "'"];
     runCommand(execCmd);
     if (errorFound) {
         process.exit(1);
