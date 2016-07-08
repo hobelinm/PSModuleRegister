@@ -2,25 +2,14 @@
 
 var fs = require('fs');
 var program = require('commander');
-var exec = require('exec-npm');
-
-function runCommand (cmd) {
-    console.log("About to execute: " + cmd);
-    exec(cmd, function(err) {
-        if (err) {
-            errorFound = true;
-            console.warn(err.message);
-        }
-    });
-}
+var childProcess = require('child_process');
 
 program
-    .version('1.0.0')
+    .version('1.0.9')
     .option('-i, --install <ps-module-package>', 'npm install PowerShell module')
     .option('-r, --register <ps-module-path>', 'Existing PowerShell module location')
     .parse(process.argv);
     
-
 if ((!program.install && !program.register) || (program.install && program.register)) {
     program.outputHelp();
     process.exit(0);
@@ -28,23 +17,55 @@ if ((!program.install && !program.register) || (program.install && program.regis
 
 var errorFound = false;
 if (program.install) {
-    var execCmd = ["npm", "install", "-g", program.install];
-    runCommand(execCmd);
-    if (errorFound) {
-        process.exit(1);
-    }
-    
-    execCmd = ["PowerShell", "-c . '" + __dirname + "\\RegisterModule.ps1' -Package " + program.install];
-    runCommand(execCmd);
-    process.exit(0);
+    var execCmd = "npm install -g " + program.install;
+    console.log("About to execute: " + execCmd);
+    var npmInstall = childProcess.exec(execCmd, function(error, stdout, stderr) {
+        if (error) {
+            console.error(error.stack);
+            console.warn('Error code: ' + error.code);
+            console.warn('Signal Received: ' + error.signal);
+            errorFound = true;
+        }
+        else {
+            console.log(stdout);
+            console.log(stderr);
+        }
+    });
+
+    npmInstall.on('exit', function (code) {
+        console.log('Command [' + execCmd + '] completed with code: ' + code);
+        if (errorFound) {
+            process.exit(1);
+        }
+
+        execCmd = "PowerShell -c . '" + __dirname + "\\RegisterModule.ps1' -Package " + program.install;
+        var moduleInstall = childProcess.exec(execCmd, function(error, stdout, stderr) {
+            if (error) {
+                console.error(error.stack);
+                console.warn('Error code: ' + error.code);
+                console.warn('Signal Received: ' + error.signal);
+                process.exit(1);
+            }
+
+            console.log(stdout);
+            console.log(stderr);
+            process.exit(0);
+        });
+    });
 }
 
 if (program.register) {
-    var execCmd = ["PowerShell", "-c . '" + __dirname + "\\RegisterModule.ps1' -Path '" + program.register + "'"];
-    runCommand(execCmd);
-    if (errorFound) {
-        process.exit(1);
-    }
-    
-    process.exit(0);
+    var execCmd = "PowerShell -c . '" + __dirname + "\\RegisterModule.ps1' -Path '" + program.register + "'";
+    var moduleInstall = childProcess.exec(execCmd, function (error, stdout, stderr) {
+        if (error) {
+            console.error(error.stack);
+            console.warn('Error code: ' + error.code);
+            console.warn('Signal Received: ' + error.signal);
+            process.exit(1);
+        }
+
+        console.log(stdout);
+        console.log(stderr);
+        process.exit(0);
+    });
 }

@@ -33,7 +33,7 @@ Set-StrictMode -Version Latest
 
 # Assemble the path of the globally installed package
 if ($Package -ne "") {
-    $packagePath = Join-Path -Path $env:APPDATA -ChildPath "npm\node_modules\$Package"
+    $packagePath = Join-Path -Path $env:ProgramFiles -ChildPath "nodejs\node_modules\$Package"
     if (-not (Test-Path -Path $packagePath)) {
         Write-Error "Package path not found: $packagePath"
     }
