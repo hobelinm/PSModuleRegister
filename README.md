@@ -35,3 +35,6 @@ PS> psmoduleregister --install ps-modulepackage
 ```
 Installs ps-modulepackage globally and register it in the module path. Use any existing npm PowerShell module instead of ps-modulepackage.
 Supposing ps-modulepackage have a module manifest at its root (.psd1) user can import the module directly
+```
+PS> Import-Module MyModule
+```
