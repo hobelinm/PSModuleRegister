@@ -5,7 +5,7 @@ var program = require('commander');
 var childProcess = require('child_process');
 
 program
-    .version('1.0.11')
+    .version('1.0.12')
     .option('-i, --install <ps-module-package>', 'npm install PowerShell module')
     .option('-r, --register <ps-module-path>', 'Existing PowerShell module location')
     .parse(process.argv);

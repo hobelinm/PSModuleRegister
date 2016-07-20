@@ -1,6 +1,6 @@
 PSModuleRegister
 ================
-Version 1.0.11 _Windows Only_
+Version 1.0.12 _Windows Only_
 
 Register a module in user's PS Module path
 >Pass the module path to create a symbolic link in the PS Module path
@@ -12,7 +12,7 @@ user's console. Additionally this module perform the following checks/actions:
 * Check for admin permissions (these are required for the symbolic link creation)
 * Attempt to elevate to gain administrative permissions if current user doesn't have
 * Enable symbolic link behavior to allow PowerShell to follow through the links
-* Add user's Documents\WindowsPowerShell\Modules
+* Add user's Documents\WindowsPowerShell\Modules to $env:PSModulePath list if it's not there
 
 Installation:
 ```
