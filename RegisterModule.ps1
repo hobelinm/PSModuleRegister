@@ -63,10 +63,10 @@ if (-not $userPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Admini
 $disabledSymLinkEval = fsutil.exe behavior query SymlinkEvaluation | Where-Object { $_ -match "disabled" }
 if ($disabledSymLinkEval -ne $null) {
     Write-Warning "Enabling symbolic evaluation"
-    fsutil behavior set SymLinkEvaluation L2L:1
-    fsutil behavior set SymLinkEvaluation R2R:1
-    fsutil behavior set SymLinkEvaluation L2R:1
-    fsutil behavior set SymLinkEvaluation R2L:1
+    fsutil behavior set SymLinkEvaluation L2L:1 | Write-Verbose
+    fsutil behavior set SymLinkEvaluation R2R:1 | Write-Verbose
+    fsutil behavior set SymLinkEvaluation L2R:1 | Write-Verbose
+    fsutil behavior set SymLinkEvaluation R2L:1 | Write-Verbose
 }
 
 # Search for module manifest
@@ -97,4 +97,11 @@ if ($modulesFolderExist -eq $null) {
 
 # Create symbolic link
 $symbolicLink = Join-Path -Path $modulesFolder -ChildPath $moduleManifestName
+$symbolicLinkExists = Test-Path $symbolicLink
+if ($symbolicLinkExists) {
+    # Need to remove symbolic link before creating the new one
+    Write-Warning "Refreshing symbolic link: $symbolicLink"
+    cmd.exe /c rmdir "$symbolicLink" | Write-Verbose
+}
+
 cmd.exe /c mklink /D "$symbolicLink" "$Path"
