@@ -1,6 +1,7 @@
 PSModuleRegister
 ================
-Version 1.0.12 _Windows Only_
+Version 1.0.13 
+(_Support for MacOS and Linux is on the way!_)
 
 Register a module in user's PS Module path
 >Pass the module path to create a symbolic link in the PS Module path

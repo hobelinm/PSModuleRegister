@@ -1,11 +1,11 @@
-#!/usr/bin/env node
+#!/usr/bin/env node;
 
 var fs = require('fs');
 var program = require('commander');
 var childProcess = require('child_process');
 
 program
-    .version('1.0.12')
+    .version('1.0.13')
     .option('-i, --install <ps-module-package>', 'npm install PowerShell module')
     .option('-r, --register <ps-module-path>', 'Existing PowerShell module location')
     .parse(process.argv);
